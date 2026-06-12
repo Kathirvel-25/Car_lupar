@@ -14,15 +14,20 @@ void I2C2_GPIO_Init(void)
 {
 	RCC->AHB1ENR |= (1<<1);
 
-	GPIOB->MODER &= ~((3<<20)|(3<22));
-	GPIOB->MODER |= ((2<<20)|(2<22));
+	GPIOB->MODER &= ~((3<<20)|(3<<6));
+	GPIOB->MODER |= ((2<<20)|(2<<6));
 
-	GPIOB->OTYPER |= ((1<<10)|(1<<11));
-	GPIOB->OTYPER |= ((1<<20)|(1<<22));
+	GPIOB->OTYPER |= ((1<<10)|(1<<3));
+
+	GPIOB->PUPDR &= ~((3<<20)|(3<<6));
+	GPIOB->PUPDR |= ((1<<20)|(1<<6));
 
 
-	GPIOB->AFRH &= ~((0x0F<<8)|(0x0F<<12));
-	GPIOB->AFRH |= ((4<<8)|(4<<12));
+	GPIOB->AFRH &= ~(0x0F<<8);
+	GPIOB->AFRH |= (4<<8);
+
+	GPIOB->AFRL &= ~(0x0F<<12);
+	GPIOB->AFRL |= (9<<12);
 
 }
 
