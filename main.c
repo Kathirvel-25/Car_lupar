@@ -38,13 +38,13 @@ static uint16_t y_angle = 90;
 
 void Left_Control(uint16_t x_value,uint16_t y_value){
 
-   if(x_value > 3400 && x_value < 3910 ){
+   if(x_value > 3800  ){
 
 	   if(x_angle < 180)
 		   x_angle++;
 
    }
-   else if(x_value < 50){
+   else if(x_value < 200){
 
 	   if(x_angle > 0)
 		   x_angle--;
@@ -53,46 +53,46 @@ void Left_Control(uint16_t x_value,uint16_t y_value){
 
 
 
-   if(y_value > 3700 && y_value < 3980){
+   if(y_value > 3800 ){
 
 	   if(y_angle < 180)
 		   y_angle++;
    }
 
-   else if(y_value < 50){
+   else if(y_value < 200){
 
 	   if(y_angle > 0)
 		   y_angle--;
    }
 
-   servo_angle(0, x_angle);
-   servo_angle(1, y_angle);
+   servo2_angle(0, x_angle);
+   servo2_angle(1, y_angle);
 
 }
 
 void Both_Control(uint16_t x_value,uint16_t y_value){
 
 
-   if(x_value > 3400 && x_value < 3910){
+   if(x_value > 3800){
 
 	   if(x_angle < 180)
 		   x_angle++;
 
    }
-   else if(x_value < 50){
+   else if(x_value < 200){
 
 	   if(x_angle > 0)
 		   x_angle--;
 
    }
 
-   if(y_value > 3700 && y_value < 3980){
+   if(y_value > 3800){
 
 	   if(y_angle < 180)
 		   y_angle++;
    }
 
-   else if(y_value < 50){
+   else if(y_value < 200){
 
 	   if(y_angle > 0)
 		   y_angle--;
@@ -100,8 +100,8 @@ void Both_Control(uint16_t x_value,uint16_t y_value){
 
    servo_angle(0, x_angle);
    servo_angle(1, y_angle);
-   servo_angle(2, x_angle);
-   servo_angle(3, y_angle);
+   servo2_angle(0, x_angle);
+   servo2_angle(1, y_angle);
 
 }
 
@@ -109,13 +109,13 @@ void Both_Control(uint16_t x_value,uint16_t y_value){
 void Right_Control(uint16_t x_value,uint16_t y_value)
 {
 
-   if(x_value > 3400 && x_value < 3910 ){
+   if(x_value > 3800 ){
 
 	   if(x_angle < 180)
 		   x_angle++;
 
    }
-   else if(x_value < 50){
+   else if(x_value < 200){
 
 	   if(x_angle > 0)
 		   x_angle--;
@@ -124,22 +124,21 @@ void Right_Control(uint16_t x_value,uint16_t y_value)
 
 
 
-   if(y_value > 3700 && y_value < 3980){
+   if(y_value > 3800){
 
 	   if(y_angle < 180)
 		   y_angle++;
    }
 
-   else if(y_value < 50){
+   else if(y_value < 200){
 
 	   if(y_angle > 0)
 		   y_angle--;
    }
 
-   servo_angle(2, x_angle);
-   servo_angle(3, y_angle);
+   servo_angle(0, x_angle);
+   servo_angle(1, y_angle);
 }
-
 
 
 int main(void)
@@ -164,8 +163,8 @@ int main(void)
   NVIC_EnableIRQ(EXTI3_IRQn);
   servo_angle(0, 90);
   servo_angle(1, 90);
-  servo_angle(2, 90);
-  servo_angle(3, 90);
+  servo2_angle(0, 90);
+  servo2_angle(1, 90);
 
 
 
@@ -208,31 +207,31 @@ int main(void)
     	      }
 
 
-    		  if(BLinkState){
-
-    			  PCA_SetPWM(4, 0, 0);
-    			  PCA_SetPWM(5, 0, 0);
-
-    			  delay_ms(500);
-
-    			  PCA_SetPWM(5, 0, 4095);
-    			  PCA_SetPWM(4, 0, 4095);
-
-    		  }
-
-
-    		  if(ledState){
-
-
-    			        PCA_SetPWM(4, 0, 4095);
-    			        PCA_SetPWM(5, 0, 4095);
-
-    		  }
-
-		        else{
-			      PCA_SetPWM(4, 0, 0);
-			      PCA_SetPWM(5, 0, 0);
-		        }
+//    		  if(BLinkState){
+//
+//    			  PCA_SetPWM(4, 0, 0);
+//    			  PCA_SetPWM(5, 0, 0);
+//
+//    			  delay_ms(500);
+//
+//    			  PCA_SetPWM(5, 0, 4095);
+//    			  PCA_SetPWM(4, 0, 4095);
+//
+//    		  }
+//
+//
+//    		  if(ledState){
+//
+//
+//    			        PCA_SetPWM(4, 0, 4095);
+//    			        PCA_SetPWM(5, 0, 4095);
+//
+//    		  }
+//
+//		        else{
+//			      PCA_SetPWM(4, 0, 0);
+//			      PCA_SetPWM(5, 0, 0);
+//		        }
 
 
     }
